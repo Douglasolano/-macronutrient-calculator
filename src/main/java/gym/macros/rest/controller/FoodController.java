@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import gym.macros.entity.Food;
 import gym.macros.rest.repository.FoodRepository;
+import gym.macros.rest.service.FoodService;
 
 @RestController
 @RequestMapping(value = "gymNutrition/food")
@@ -20,6 +21,9 @@ public class FoodController {
 
 	@Autowired
 	private FoodRepository foodRepo;
+	
+	@Autowired
+	private FoodService foodServ;
 	
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
@@ -30,7 +34,7 @@ public class FoodController {
 	@PostMapping()
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public void postFood(@RequestBody Food food) {
-		foodRepo.save(food);
+		foodServ.saveFood(food);
 	}
 	
 }

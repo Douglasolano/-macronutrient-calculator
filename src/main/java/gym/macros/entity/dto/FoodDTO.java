@@ -3,13 +3,13 @@ package gym.macros.entity.dto;
 public class FoodDTO {
 
 	private Integer id;
-	private Integer gram;
+	private Double gram;
 
 	public FoodDTO() {
 		super();
 	}
 	
-	public FoodDTO(Integer id, Integer gram) {
+	public FoodDTO(Integer id, Double gram) {
 		super();
 		this.id = id;
 		this.gram = gram;
@@ -23,11 +23,11 @@ public class FoodDTO {
 		this.id = id;
 	}
 
-	public Integer getGram() {
+	public Double getGram() {
 		return gram;
 	}
 
-	public void setGram(Integer gram) {
+	public void setGram(Double gram) {
 		this.gram = gram;
 	}
 }

@@ -37,20 +37,28 @@ public class DietServiceImp implements DietService{
 		List<Food> aux = new ArrayList<Food>();
 		
 		Diet realDiet = new Diet();
+		Double dietTotalCalories = 0.0;
+		Double foodTotalCalories = 0.0;
 		
 		for (FoodDTO food : diet.getFood()) {
 			
-			Food realFood = foodRepo.findById(food.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Food id not found."));
+			Food realFood = foodRepo
+							.findById(food.getId())
+							.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Food id not found."));
 			
-			Double actualCalories = realDiet.getCalorie();
-			realDiet.setCalorie(actualCalories * food.getGram());
+			Double foodCalories = realFood.getCalorie();
+			Double foodGrams = realFood.getGram();
+			
+			foodTotalCalories += food.getGram() * (foodCalories * foodGrams);
+			
 			aux.add(realFood);
 		}
 		
+		realDiet.setCalorie(dietTotalCalories + foodTotalCalories);
 		realDiet.setName(diet.getName());
 		realDiet.setFood(aux);
-		Diet savedDiet = dietRepo.save(realDiet);
 		
+		Diet savedDiet = dietRepo.save(realDiet);
 		dietFoodServ.saveDietFood(savedDiet,aux);
 		
 	}

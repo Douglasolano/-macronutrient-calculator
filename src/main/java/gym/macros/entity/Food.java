@@ -19,7 +19,7 @@ public class Food {
 	private String name;
 	
 	@Column(name = "food_gram")
-	private Integer gram;
+	private Double gram = 1.0;
 	
 	@Column(name = "food_calorie")
 	private Double calorie; 
@@ -37,7 +37,7 @@ public class Food {
 		
 	}
 	
-	public Food(Integer id, String name, Integer gram, Double calorie, Double carbohydrate, Double protein, Double fat) {
+	public Food(Integer id, String name, Double gram, Double calorie, Double carbohydrate, Double protein, Double fat) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -64,11 +64,11 @@ public class Food {
 		this.name = name;
 	}
 
-	public Integer getGram() {
+	public Double getGram() {
 		return gram;
 	}
 
-	public void setGram(Integer gram) {
+	public void setGram(Double gram) {
 		this.gram = gram;
 	}
 
