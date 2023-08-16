@@ -10,10 +10,12 @@ import org.springframework.web.server.ResponseStatusException;
 
 import gym.macros.entity.Diet;
 import gym.macros.entity.Food;
+import gym.macros.entity.PortionedFood;
 import gym.macros.entity.dto.DietDTO;
 import gym.macros.entity.dto.FoodDTO;
 import gym.macros.rest.repository.DietRepository;
 import gym.macros.rest.repository.FoodRepository;
+import gym.macros.rest.repository.PortionedFoodRepository;
 import gym.macros.rest.service.DietFoodService;
 import gym.macros.rest.service.DietService;
 import jakarta.transaction.Transactional;
@@ -29,12 +31,16 @@ public class DietServiceImp implements DietService{
 	
 	@Autowired
 	private DietFoodService dietFoodServ;
+	
+	@Autowired
+	private PortionedFoodRepository portionedFoodRepo;
 
 	@Override
 	@Transactional
 	public void saveDiet(DietDTO diet) {
 	
 		List<Food> aux = new ArrayList<Food>();
+		List<PortionedFood> aux2= new ArrayList<PortionedFood>();
 		
 		Diet realDiet = new Diet();
 		Double dietTotalCalories = 0.0;
@@ -52,6 +58,17 @@ public class DietServiceImp implements DietService{
 			foodTotalCalories += food.getGram() * (foodCalories * foodGrams);
 			
 			aux.add(realFood);
+			
+			PortionedFood pf = new PortionedFood();
+			pf.setName(realFood.getName());
+			pf.setCalorie(foodTotalCalories);
+			pf.setCarbohydrate(realFood.getCarbohydrate() * food.getGram());
+			pf.setFat(realFood.getFat() * food.getGram());
+			pf.setGram(food.getGram());
+			pf.setProtein(realFood.getProtein() * food.getGram());
+			pf.setFood(realFood);
+			PortionedFood realPortionedFood =  portionedFoodRepo.save(pf);
+			aux2.add(realPortionedFood);
 		}
 		
 		realDiet.setCalorie(dietTotalCalories + foodTotalCalories);
@@ -59,7 +76,7 @@ public class DietServiceImp implements DietService{
 		realDiet.setFood(aux);
 		
 		Diet savedDiet = dietRepo.save(realDiet);
-		dietFoodServ.saveDietFood(savedDiet,aux);
+		dietFoodServ.saveDietFood(savedDiet,aux,aux2);
 		
 	}
 }

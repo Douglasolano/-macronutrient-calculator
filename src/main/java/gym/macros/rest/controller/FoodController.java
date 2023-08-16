@@ -31,7 +31,7 @@ public class FoodController {
 		return foodRepo.findAll();
 	}
 	
-	@PostMapping()
+	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public void postFood(@RequestBody Food food) {
 		foodServ.saveFood(food);
