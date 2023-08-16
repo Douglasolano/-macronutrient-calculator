@@ -18,6 +18,9 @@ public class Food {
 	@Column(name = "food_name")
 	private String name;
 	
+	@Column(name = "food_gram")
+	private Integer gram;
+	
 	@Column(name = "food_calorie")
 	private Double calorie; 
 	
@@ -34,10 +37,11 @@ public class Food {
 		
 	}
 	
-	public Food(Integer id, String name, Double calorie, Double carbohydrate, Double protein, Double fat) {
+	public Food(Integer id, String name, Integer gram, Double calorie, Double carbohydrate, Double protein, Double fat) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.gram = gram;
 		this.calorie = calorie;
 		this.carbohydrate = carbohydrate;
 		this.protein = protein;
@@ -58,6 +62,14 @@ public class Food {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Integer getGram() {
+		return gram;
+	}
+
+	public void setGram(Integer gram) {
+		this.gram = gram;
 	}
 
 	public Double getCalorie() {
@@ -94,7 +106,7 @@ public class Food {
 
 	@Override
 	public String toString() {
-		return "Foods [id=" + id + ", name=" + name + ", calorie=" + calorie + ", carbohydrate=" + carbohydrate
-				+ ", protein=" + protein + ", fat=" + fat + "]";
+		return "Food [id=" + id + ", name=" + name + ", gram=" + gram + ", calorie=" + calorie + ", carbohydrate="
+				+ carbohydrate + ", protein=" + protein + ", fat=" + fat + "]";
 	}
 }

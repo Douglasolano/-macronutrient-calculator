@@ -5,13 +5,13 @@ import java.util.List;
 public class DietDTO {
 
 	private String name;
-	private List<PortionFoodDTO> food;
+	private List<FoodDTO> food;
 	
 	public DietDTO() {
 		super();
 	}
 	
-	public DietDTO(String name, List<PortionFoodDTO> food) {
+	public DietDTO(String name, List<FoodDTO> food) {
 		super();
 		this.name = name;
 		this.food = food;
@@ -25,11 +25,11 @@ public class DietDTO {
 		this.name = name;
 	}
 
-	public List<PortionFoodDTO> getFood() {
+	public List<FoodDTO> getFood() {
 		return food;
 	}
 
-	public void setFood(List<PortionFoodDTO> food) {
+	public void setFood(List<FoodDTO> food) {
 		this.food = food;
 	}
 }

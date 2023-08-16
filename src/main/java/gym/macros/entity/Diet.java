@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -25,14 +26,15 @@ public class Diet {
 	private Double calorie = 0.0;
 	
 	@OneToMany
+	@JoinColumn(name = "food_id")
 	@Column(name="diet_food")
-	private List<PortionFood> food;
+	private List<Food> food;
 
 	public Diet() {
 		super();
 	}
 
-	public Diet(Integer id, String name, Double calorie, List<PortionFood> food) {
+	public Diet(Integer id, String name, Double calorie, List<Food> food) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -64,11 +66,11 @@ public class Diet {
 		this.calorie = calorie;
 	}
 
-	public List<PortionFood> getFood() {
+	public List<Food> getFood() {
 		return food;
 	}
 
-	public void setFood(List<PortionFood> food) {
+	public void setFood(List<Food> food) {
 		this.food = food;
 	}
 
