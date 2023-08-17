@@ -16,6 +16,7 @@ import gym.macros.rest.repository.DietFoodRepository;
 import gym.macros.rest.repository.DietRepository;
 import gym.macros.rest.repository.PortionedFoodDietRepository;
 import gym.macros.rest.service.DietFoodService;
+import gym.macros.rest.service.PortionedFoodPortionedDietService;
 
 @Service
 public class DietFoodServiceImp implements DietFoodService{
@@ -29,6 +30,9 @@ public class DietFoodServiceImp implements DietFoodService{
 	@Autowired
 	private PortionedFoodDietRepository portionedFoodDietRepo;
 	
+	@Autowired
+	private PortionedFoodPortionedDietService PortionedFoodPortionedDietServ;
+	
 	@Override
 	public void saveDietFood(Diet realDiet, List<Food> aux, List<PortionedFood> aux2) {
 		
@@ -39,7 +43,7 @@ public class DietFoodServiceImp implements DietFoodService{
 					.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Diet id not found."));
 		
 		
-		for (int i=0; i>aux.size(); i++) {
+		for (int i=0; i < aux.size(); i++) {
 			DietFood dietFood = new DietFood();
 			dietFood.setDietId(diet);
 			dietFood.setFoodId(aux.get(i));
@@ -51,8 +55,8 @@ public class DietFoodServiceImp implements DietFoodService{
 		}
 		
 		pfd.setDiet(diet);
-		pfd.setPortionedFood(aux2);
-		portionedFoodDietRepo.save(pfd);
+		PortionedFoodDiet savedPortionedFoodDiet =  portionedFoodDietRepo.save(pfd);
+		PortionedFoodPortionedDietServ.savePortionedFoodPortionedDiet(aux2, savedPortionedFoodDiet);
 	}
 
 }

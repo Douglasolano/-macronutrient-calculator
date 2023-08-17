@@ -1,7 +1,5 @@
 package gym.macros.entity;
 
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,7 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,27 +21,22 @@ public class PortionedFoodDiet {
 	@JoinColumn(name = "diet_food_id")
 	private Diet diet;
 	
-	@OneToMany
-	@JoinColumn(name = "portioned_food_id")
-	private List<PortionedFood> portionedFood;
-	
 	@Column(name = "portioned_food_diet_calorie")
 	private Double dietCalorie = 0.0;
 	
 	@Column(name= "portioned_food_diet_gram")
-	private Double dietGram;
+	private Double dietGram = 0.0;
 	
 	public PortionedFoodDiet() {
 		super();
 	}
 
-	public PortionedFoodDiet(Integer id, Diet diet, Double dietCalorie, Double dietGram, List<PortionedFood> portionedFood) {
+	public PortionedFoodDiet(Integer id, Diet diet, Double dietCalorie, Double dietGram) {
 		super();
 		this.id = id;
 		this.diet = diet;
 		this.dietCalorie = dietCalorie;
 		this.dietGram = dietGram;
-		this.portionedFood = portionedFood;
 	}
 
 	public Integer getId() {
@@ -79,17 +71,9 @@ public class PortionedFoodDiet {
 		this.dietCalorie = dietCalorie;
 	}
 
-	public List<PortionedFood> getPortionedFood() {
-		return portionedFood;
-	}
-
-	public void setPortionedFood(List<PortionedFood> portionedFood) {
-		this.portionedFood = portionedFood;
-	}
-
 	@Override
 	public String toString() {
 		return "PortionedFoodDiet [id=" + id + ", diet=" + diet + ", dietCalorie=" + dietCalorie + ", dietGram="
-				+ dietGram + ", portionedFood=" + portionedFood + "]";
+				+ dietGram + "]";
 	}
 }
