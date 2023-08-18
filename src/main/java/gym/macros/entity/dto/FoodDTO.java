@@ -1,5 +1,9 @@
 package gym.macros.entity.dto;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+
 public class FoodDTO {
 
 	private Integer id;

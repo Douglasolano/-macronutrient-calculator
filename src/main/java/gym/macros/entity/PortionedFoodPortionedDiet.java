@@ -9,7 +9,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tb_portioned_food_portined_diet")
+@Table(name="tb_portioned_food_portioned_diet")
 public class PortionedFoodPortionedDiet {
 
 	@Id

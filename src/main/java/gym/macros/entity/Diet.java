@@ -2,6 +2,8 @@ package gym.macros.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +30,7 @@ public class Diet {
 	@OneToMany
 	@JoinColumn(name = "food_id")
 	@Column(name="diet_food")
+	@JsonIgnore
 	private List<Food> food;
 
 	public Diet() {

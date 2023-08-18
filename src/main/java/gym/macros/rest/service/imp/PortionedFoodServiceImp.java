@@ -6,5 +6,4 @@ import gym.macros.rest.service.PortionedFoodService;
 
 @Service
 public class PortionedFoodServiceImp implements PortionedFoodService{
-
 }
