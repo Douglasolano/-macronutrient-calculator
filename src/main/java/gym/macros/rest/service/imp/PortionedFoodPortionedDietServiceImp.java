@@ -56,14 +56,14 @@ public class PortionedFoodPortionedDietServiceImp implements PortionedFoodPortio
 			
 			PortionedFoodDTO pfDTO = new PortionedFoodDTO();
 			
-			pfDTO.setCalorie(portionedFood.get(i).getCalorie());
-			pfDTO.setCarbohydrate(portionedFood.get(i).getCarbohydrate());
-			pfDTO.setFat(portionedFood.get(i).getFat());
+			pfDTO.setCalorie((double) Math.round(portionedFood.get(i).getCalorie()));
+			pfDTO.setCarbohydrate((double) Math.round(portionedFood.get(i).getCarbohydrate()));
+			pfDTO.setFat((double) Math.round(portionedFood.get(i).getFat()));
 			pfDTO.setFoodId(portionedFood.get(i).getFood().getId());
 			pfDTO.setGram(portionedFood.get(i).getGram());
 			pfDTO.setName(portionedFood.get(i).getName());
 			pfDTO.setPortionedFoodId(portionedFood.get(i).getId());
-			pfDTO.setProtein(portionedFood.get(i).getProtein());
+			pfDTO.setProtein((double) Math.round(portionedFood.get(i).getProtein()));
 			
 			listpfDTO.add(pfDTO);
 			
@@ -72,7 +72,7 @@ public class PortionedFoodPortionedDietServiceImp implements PortionedFoodPortio
 		PortionedFoodDietDTO pfdDTO = new PortionedFoodDietDTO();
 		
 		pfdDTO.setDietId(portionedFoodDiet.getDiet().getId());
-		pfdDTO.setDietCalorie(portionedFoodDiet.getDietCalorie());
+		pfdDTO.setDietCalorie((double) Math.round(portionedFoodDiet.getDietCalorie()));
 		pfdDTO.setDietGram(portionedFoodDiet.getDietGram());
 		pfdDTO.setPortionedFoodDietId(portionedFoodDiet.getId());
 		pfdDTO.setPortionedFood(listpfDTO);

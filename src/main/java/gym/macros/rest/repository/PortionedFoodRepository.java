@@ -21,5 +21,7 @@ public interface PortionedFoodRepository extends JpaRepository<PortionedFood, In
 			+ "TB_PORTIONED_FOOD_PORTIONED_DIET.PORTIONED_FOOD_ID = TB_PORTIONED_FOOD.PORTIONED_FOOD_ID\r\n"
 			+ "AND TB_PORTIONED_FOOD_PORTIONED_DIET.PORTIONED_FOOD_DIET_ID = :id", nativeQuery = true)
 	public List<PortionedFood> findPortionedFood(@Param("id") Integer id);
+	
+//	public List<PortionedFood> findByFood(Integer food);
 
 }

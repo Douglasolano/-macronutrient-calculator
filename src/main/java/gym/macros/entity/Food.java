@@ -15,22 +15,22 @@ public class Food {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@Column(name = "food_name")
+	@Column(name = "food_name", nullable=false)
 	private String name;
 	
 	@Column(name = "food_gram")
 	private Double gram = 1.0;
 	
-	@Column(name = "food_calorie")
+	@Column(name = "food_calorie", nullable=false)
 	private Double calorie; 
 	
-	@Column(name = "food_carbohydrate")
+	@Column(name = "food_carbohydrate", nullable=false)
 	private Double carbohydrate;
 	
-	@Column(name = "food_protein")
+	@Column(name = "food_protein", nullable=false)
 	private Double protein;
 	
-	@Column(name = "food_fat")
+	@Column(name = "food_fat", nullable=false)
 	private Double fat;
 
 	public Food() {

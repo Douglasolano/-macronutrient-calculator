@@ -2,6 +2,7 @@ package gym.macros.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import gym.macros.entity.dto.DietDTO;
 import gym.macros.entity.dto.PortionedFoodDietDTO;
+import gym.macros.rest.repository.DietRepository;
 import gym.macros.rest.service.DietService;
 import gym.macros.rest.service.PortionedFoodPortionedDietService;
 
@@ -19,8 +21,8 @@ import gym.macros.rest.service.PortionedFoodPortionedDietService;
 @RequestMapping(value = "gymNutrition/diet")
 public class DietController {
 
-//	@Autowired
-//	private DietRepository dietRepo;
+	@Autowired
+	private DietRepository dietRepo;
 	
 	@Autowired
 	private DietService dietService;
@@ -39,4 +41,10 @@ public class DietController {
 	public void postDiet(@RequestBody DietDTO dietDTO) {
 		dietService.saveDiet(dietDTO);
 	}
+	
+//	@DeleteMapping(value = "/{id}")
+//	@ResponseStatus(HttpStatus.NO_CONTENT)
+//	public void deleteDiet(@PathVariable("id") Integer id) {
+//		dietService.deleteDiet(id);
+//	}
 }
