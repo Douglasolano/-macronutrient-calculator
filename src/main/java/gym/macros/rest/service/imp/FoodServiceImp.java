@@ -17,7 +17,6 @@ public class FoodServiceImp implements FoodService{
 	public void saveFood(Food food) {
 		
 		if( food.getGram() > 1.0 ) {
-			
 			food.setGram(food.getGram() / food.getGram());
 			food.setCalorie(food.getCalorie() / food.getGram());
 			food.setCarbohydrate(food.getCarbohydrate() / food.getGram());

@@ -12,6 +12,7 @@ import gym.macros.entity.DietFood;
 import gym.macros.entity.Food;
 import gym.macros.entity.PortionedFood;
 import gym.macros.entity.PortionedFoodDiet;
+import gym.macros.rest.exception.CustomExceptionHandler;
 import gym.macros.rest.repository.DietFoodRepository;
 import gym.macros.rest.repository.DietRepository;
 import gym.macros.rest.repository.PortionedFoodDietRepository;
@@ -48,7 +49,7 @@ public class DietFoodServiceImp implements DietFoodService{
 		
 		Diet diet = dietRepo
 					.findById(realDiet.getId())
-					.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Diet id not found."));
+					.orElseThrow(() -> new CustomExceptionHandler("Diet id not found: " + realDiet.getId()));
 		
 		
 		for (int i=0; i < aux.size(); i++) {
@@ -82,7 +83,4 @@ public class DietFoodServiceImp implements DietFoodService{
 		portionedFoodDietRepo.deletePortionedFoodDiet(id);
 		dietRepo.deleteById(id);
 	}
-	
-	
-
 }
