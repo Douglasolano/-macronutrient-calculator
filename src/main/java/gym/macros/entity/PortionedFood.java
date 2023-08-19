@@ -18,9 +18,8 @@ public class PortionedFood {
 	@Column(name="portioned_food_id")
 	private Integer id;
 	
-	@ManyToOne
 	@JoinColumn(name = "food_id")
-	private Food food;
+	private Integer food;
 	
 	@Column(name = "portioned_food_name")
 	private String name;
@@ -44,7 +43,7 @@ public class PortionedFood {
 		super();
 	}
 
-	public PortionedFood(Integer id, Food food, String name, Double gram, Double calorie, Double carbohydrate,
+	public PortionedFood(Integer id, Integer food, String name, Double gram, Double calorie, Double carbohydrate,
 			Double protein, Double fat) {
 		super();
 		this.id = id;
@@ -65,11 +64,11 @@ public class PortionedFood {
 		this.id = id;
 	}
 
-	public Food getFood() {
+	public Integer getFood() {
 		return food;
 	}
 
-	public void setFood(Food food) {
+	public void setFood(Integer food) {
 		this.food = food;
 	}
 

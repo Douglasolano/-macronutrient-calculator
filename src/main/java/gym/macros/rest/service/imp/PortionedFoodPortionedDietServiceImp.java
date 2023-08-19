@@ -59,7 +59,7 @@ public class PortionedFoodPortionedDietServiceImp implements PortionedFoodPortio
 			pfDTO.setCalorie((double) Math.round(portionedFood.get(i).getCalorie()));
 			pfDTO.setCarbohydrate((double) Math.round(portionedFood.get(i).getCarbohydrate()));
 			pfDTO.setFat((double) Math.round(portionedFood.get(i).getFat()));
-			pfDTO.setFoodId(portionedFood.get(i).getFood().getId());
+			pfDTO.setFoodId(portionedFood.get(i).getFood());
 			pfDTO.setGram(portionedFood.get(i).getGram());
 			pfDTO.setName(portionedFood.get(i).getName());
 			pfDTO.setPortionedFoodId(portionedFood.get(i).getId());

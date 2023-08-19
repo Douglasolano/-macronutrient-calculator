@@ -81,9 +81,11 @@ public class DietServiceImp implements DietService{
 			pf.setFat((double) Math.round(realFood.getFat() * food.getGram()));
 			pf.setGram(food.getGram());
 			pf.setProtein((double) Math.round(realFood.getProtein() * food.getGram()));
-			pf.setFood(realFood);
+			pf.setFood(realFood.getId());
 			PortionedFood realPortionedFood =  portionedFoodRepo.save(pf);
 			aux2.add(realPortionedFood);
+			
+			foodTotalCalories = 0.0;
 		}
 		
 		realDiet.setCalorie(dietTotalCalories + foodTotalCalories);

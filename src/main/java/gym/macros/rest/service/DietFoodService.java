@@ -8,4 +8,6 @@ import gym.macros.entity.PortionedFood;
 
 public interface DietFoodService{
 	void saveDietFood(Diet realDiet, List<Food> aux, List<PortionedFood> aux2);
+	
+	void deleteDietFood(Integer id);
 }

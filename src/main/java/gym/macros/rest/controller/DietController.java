@@ -13,34 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import gym.macros.entity.dto.DietDTO;
 import gym.macros.entity.dto.PortionedFoodDietDTO;
-import gym.macros.rest.repository.DietFoodRepository;
-import gym.macros.rest.repository.DietRepository;
-import gym.macros.rest.repository.PortionedFoodDietRepository;
-import gym.macros.rest.repository.PortionedFoodPortionedDietRepository;
-import gym.macros.rest.repository.PortionedFoodRepository;
+import gym.macros.rest.service.DietFoodService;
 import gym.macros.rest.service.DietService;
 import gym.macros.rest.service.PortionedFoodPortionedDietService;
-import gym.macros.rest.service.PortionedFoodService;
 
 @RestController
 @RequestMapping(value = "gymNutrition/diet")
 public class DietController {
-
-	@Autowired
-	private DietRepository dietRepo;
 	
-	@Autowired
-	private DietFoodRepository dietFoodRepo;
-
-	@Autowired
-	private PortionedFoodPortionedDietRepository repo;
-	
-	@Autowired
-	private PortionedFoodRepository portionedFoodRepo;
-	
-	@Autowired
-	private PortionedFoodDietRepository portionedFoodDietRepo;
-
 	@Autowired
 	private DietService dietService;
 	
@@ -48,7 +28,7 @@ public class DietController {
 	private PortionedFoodPortionedDietService portionedFoodPortionedDietServ;
 	
 	@Autowired
-	private PortionedFoodService portionedFoodServ;
+	private DietFoodService dietFoodServ;
 	
 	@GetMapping(value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
@@ -65,10 +45,6 @@ public class DietController {
 	@DeleteMapping(value = "/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteDiet(@PathVariable("id") Integer id) {
-		repo.deletePortionedFoodPortonedDiet(id);
-//		portionedFoodServ.deletePortionedFoodService(id);
-		dietFoodRepo.deleteDietFood(id);
-		portionedFoodDietRepo.deletePortionedFoodDiet(id);
-		dietRepo.deleteById(id);
+		dietFoodServ.deleteDietFood(id);
 	}
 }

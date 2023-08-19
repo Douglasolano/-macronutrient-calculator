@@ -15,6 +15,8 @@ import gym.macros.entity.PortionedFoodDiet;
 import gym.macros.rest.repository.DietFoodRepository;
 import gym.macros.rest.repository.DietRepository;
 import gym.macros.rest.repository.PortionedFoodDietRepository;
+import gym.macros.rest.repository.PortionedFoodPortionedDietRepository;
+import gym.macros.rest.repository.PortionedFoodRepository;
 import gym.macros.rest.service.DietFoodService;
 import gym.macros.rest.service.PortionedFoodPortionedDietService;
 
@@ -29,6 +31,12 @@ public class DietFoodServiceImp implements DietFoodService{
 	
 	@Autowired
 	private PortionedFoodDietRepository portionedFoodDietRepo;
+	
+	@Autowired
+	private PortionedFoodPortionedDietRepository portionedFoodPortionedDietRepo;
+	
+	@Autowired
+	private PortionedFoodRepository portionedFoodRepo;
 	
 	@Autowired
 	private PortionedFoodPortionedDietService PortionedFoodPortionedDietServ;
@@ -58,5 +66,23 @@ public class DietFoodServiceImp implements DietFoodService{
 		PortionedFoodDiet savedPortionedFoodDiet =  portionedFoodDietRepo.save(pfd);
 		PortionedFoodPortionedDietServ.savePortionedFoodPortionedDiet(aux2, savedPortionedFoodDiet);
 	}
+
+	@Override
+	public void deleteDietFood(Integer id) {
+		
+		List<PortionedFood> pf =  portionedFoodRepo.findPortionedFoodId(id);
+		
+		portionedFoodPortionedDietRepo.deletePortionedFoodPortonedDiet(id);
+		
+		pf.forEach(p -> {
+			portionedFoodRepo.deletePortionedFood(p.getId());
+		});
+		
+		dietFoodRepo.deleteDietFood(id);
+		portionedFoodDietRepo.deletePortionedFoodDiet(id);
+		dietRepo.deleteById(id);
+	}
+	
+	
 
 }
