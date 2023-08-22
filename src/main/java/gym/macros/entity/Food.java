@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name="tb_food")
@@ -16,21 +18,26 @@ public class Food {
 	private Integer id;
 	
 	@Column(name = "food_name", nullable=false)
+	@NotEmpty(message = "name is required")
 	private String name;
 	
 	@Column(name = "food_gram")
 	private Double gram = 1.0;
 	
-	@Column(name = "food_calorie", nullable=false)
+	@Column(name = "food_calorie")
+	@NotNull(message = "calorie is required")
 	private Double calorie; 
 	
-	@Column(name = "food_carbohydrate", nullable=false)
+	@Column(name = "food_carbohydrate")
+	@NotNull(message = "carbohydrate is required")
 	private Double carbohydrate;
 	
-	@Column(name = "food_protein", nullable=false)
+	@Column(name = "food_protein")
+	@NotNull(message = "protein is required")
 	private Double protein;
 	
-	@Column(name = "food_fat", nullable=false)
+	@Column(name = "food_fat")
+	@NotNull(message = "fat is required")
 	private Double fat;
 
 	public Food() {

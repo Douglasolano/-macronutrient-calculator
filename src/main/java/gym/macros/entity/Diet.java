@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "tb_diet")
@@ -22,7 +23,7 @@ public class Diet {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@Column(name="diet_name", nullable=false)
+	@Column(name="diet_name")
 	private String name;
 	
 	@Column(name="diet_calorie")

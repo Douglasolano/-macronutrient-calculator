@@ -11,7 +11,7 @@ import gym.macros.entity.Food;
 import gym.macros.entity.PortionedFood;
 import gym.macros.entity.dto.DietDTO;
 import gym.macros.entity.dto.FoodDTO;
-import gym.macros.rest.exception.CustomExceptionHandler;
+import gym.macros.rest.exception.BussinesRuleException;
 import gym.macros.rest.repository.DietFoodRepository;
 import gym.macros.rest.repository.DietRepository;
 import gym.macros.rest.repository.FoodRepository;
@@ -61,7 +61,7 @@ public class DietServiceImp implements DietService{
 			
 			Food realFood = foodRepo
 							.findById(food.getId())
-							.orElseThrow(() -> new CustomExceptionHandler("Food id not found: " + food.getId()));
+							.orElseThrow(() -> new BussinesRuleException("Food id not found: " + food.getId()));
 			
 			Double foodCalories = realFood.getCalorie();
 			Double foodGrams = realFood.getGram();

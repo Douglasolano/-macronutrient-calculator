@@ -16,6 +16,7 @@ import gym.macros.entity.dto.PortionedFoodDietDTO;
 import gym.macros.rest.service.DietFoodService;
 import gym.macros.rest.service.DietService;
 import gym.macros.rest.service.PortionedFoodPortionedDietService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "gymNutrition/diet")
@@ -38,7 +39,7 @@ public class DietController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public void postDiet(@RequestBody DietDTO dietDTO) {
+	public void postDiet(@RequestBody @Valid DietDTO dietDTO) {
 		dietService.saveDiet(dietDTO);
 	}
 	

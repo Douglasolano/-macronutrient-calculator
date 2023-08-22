@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import gym.macros.entity.Food;
 import gym.macros.rest.repository.FoodRepository;
 import gym.macros.rest.service.FoodService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "gymNutrition/food")
@@ -33,7 +36,8 @@ public class FoodController {
 	
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public void postFood(@RequestBody Food food) {
+	public void postFood(@RequestBody @Valid Food food) {
+		
 		foodServ.saveFood(food);
 	}
 	
