@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import gym.macros.entity.PortionedFood;
 import gym.macros.entity.PortionedFoodDiet;
 import jakarta.transaction.Transactional;
 
@@ -23,7 +22,6 @@ public interface PortionedFoodDietRepository extends JpaRepository<PortionedFood
 			+ "\r\n"
 			+ "WHERE\r\n"
 			+ "TB_PORTIONED_FOOD_PORTIONED_DIET.PORTIONED_FOOD_DIET_ID = TB_PORTIONED_FOOD_DIET.DIET_FOOD_ID\r\n"
-			+ "AND ROWNUM = 1\r\n"
 			+ "AND TB_PORTIONED_FOOD_DIET.DIET_FOOD_ID = :id", nativeQuery = true)
 	public PortionedFoodDiet findPortionedFoodDiet(@Param("id") Integer id);
 	

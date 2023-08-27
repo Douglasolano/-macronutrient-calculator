@@ -12,11 +12,8 @@ import gym.macros.entity.PortionedFood;
 import gym.macros.entity.dto.DietDTO;
 import gym.macros.entity.dto.FoodDTO;
 import gym.macros.rest.exception.BussinesRuleException;
-import gym.macros.rest.repository.DietFoodRepository;
 import gym.macros.rest.repository.DietRepository;
 import gym.macros.rest.repository.FoodRepository;
-import gym.macros.rest.repository.PortionedFoodDietRepository;
-import gym.macros.rest.repository.PortionedFoodPortionedDietRepository;
 import gym.macros.rest.repository.PortionedFoodRepository;
 import gym.macros.rest.service.DietFoodService;
 import gym.macros.rest.service.DietService;
@@ -36,15 +33,6 @@ public class DietServiceImp implements DietService{
 	
 	@Autowired
 	private PortionedFoodRepository portionedFoodRepo;
-	
-	@Autowired
-	private PortionedFoodPortionedDietRepository portionedFoodPortioendDietRepo;
-	
-	@Autowired
-	private PortionedFoodDietRepository portionedFoodDietRepo;
-	
-	@Autowired
-	private DietFoodRepository dietFoodRepo;
 
 	@Override
 	@Transactional
@@ -80,6 +68,7 @@ public class DietServiceImp implements DietService{
 			pf.setFood(realFood.getId());
 			PortionedFood realPortionedFood =  portionedFoodRepo.save(pf);
 			aux2.add(realPortionedFood);
+			dietTotalCalories += realPortionedFood.getCalorie();
 			
 			foodTotalCalories = 0.0;
 		}
